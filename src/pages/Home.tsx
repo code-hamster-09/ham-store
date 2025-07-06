@@ -1,8 +1,8 @@
-import Categories from '@/components/Categories'
-import FeaturedProducts from '@/components/FeaturedProducts'
-import Features from '@/components/Features'
-import Hero from '@/components/Hero'
-import Newsletter from '@/components/Newsletter'
+import Categories from '@/components/Home/Categories'
+import FeaturedProducts from '@/components/Home/FeaturedProducts'
+import Features from '@/components/Home/Features'
+import Hero from '@/components/Home/Hero'
+import Newsletter from '@/components/Home/Newsletter'
 import React from 'react'
 
 const Home = () => {

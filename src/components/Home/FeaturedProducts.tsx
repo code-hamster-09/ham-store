@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
-import ProductCard from "./ProductCard";
-import { Button } from "./ui/button";
+import ProductCard from "@/components/ProductCard";
+import { Button } from "@/components/ui/button";
 
 const FeaturedProducts = () => {
   const featuredProducts = [

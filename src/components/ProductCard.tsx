@@ -1,7 +1,7 @@
-import { Badge, Heart, ShoppingCart, Star } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Heart, ShoppingCart, Star } from "lucide-react";
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { Button } from "./ui/button";
 
 interface Product {
   id: number;
@@ -31,7 +31,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
       <div className="bg-white rounded-3xl overflow-hidden shadow-lg shadow-blue-100/50 transition-all duration-300 hover:shadow-2xl hover:shadow-blue-200/50 hover:-translate-y-2">
         <div className="relative">
           <NavLink to={"product"}>
-            <div className="aspect-square overflow-hidden bg-gray-100">
+            <div className="aspect-square overflow-hidden bg-gray-200">
               <img alt={product.name} className="h-full w-full object-cover" />
             </div>
           </NavLink>
@@ -86,18 +86,29 @@ const ProductCard = ({ product }: ProductCardProps) => {
             <div className="space-y-3">
               {/* category & brand  */}
               <div className="flex items-center justify-between">
-                <div className="px-3 py-1 rounded-full bg-gray-100 text-gray-700 text-xs font-medium">{product.category}</div>
+                <div className="px-3 py-1 rounded-full bg-gray-100 text-gray-700 text-xs font-medium">
+                  {product.category}
+                </div>
                 <span className="text-sm text-gray-500">{product.brand}</span>
               </div>
 
               {/* product name  */}
-              <h3 className="text-lg font-bold group-hover:text-blue-600">{product.name}</h3>
+              <h3 className="text-lg font-bold group-hover:text-blue-600">
+                {product.name}
+              </h3>
 
               {/* rating */}
               <div className="flex items-center gap-2">
                 <div className="flex items-center gap-1">
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} className={`w-4 h-4 ${i < Math.floor(product.rating) ? "fill-yellow-400 text-yellow-400" : "text-gray-400"}`}/>
+                    <Star
+                      key={i}
+                      className={`w-4 h-4 ${
+                        i < Math.floor(product.rating)
+                          ? "fill-yellow-400 text-yellow-400"
+                          : "text-gray-400"
+                      }`}
+                    />
                   ))}
                 </div>
                 <span className="text-gray-600">
@@ -107,7 +118,9 @@ const ProductCard = ({ product }: ProductCardProps) => {
 
               {/* colors  */}
               <div className="flex items-center gap-2">
-                <span className="text-gray-600 text-sm font-medium">Colors:</span>
+                <span className="text-gray-600 text-sm font-medium">
+                  Colors:
+                </span>
                 <div className="flex gap-1">
                   <button>blue</button>
                 </div>
@@ -115,7 +128,9 @@ const ProductCard = ({ product }: ProductCardProps) => {
 
               {/* price */}
               <div className="">
-                <span className="text-2xl font-bold text-gray-900">${product.price}</span>
+                <span className="text-2xl font-bold text-gray-900">
+                  ${product.price}
+                </span>
               </div>
             </div>
           </NavLink>

@@ -1,7 +1,9 @@
+import ProductSort from "@/components/ProductSort";
 import ProductCard from "@/components/ProductCard";
 import ProductFilters from "@/components/ProductFilters";
 import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
+import { useState } from "react";
 
 const products = [
   {
@@ -93,18 +95,31 @@ const products = [
 ];
 
 const Products = () => {
+  const [selectedFilters, setSelectedFilters] = useState({
+    categories: [],
+    brands: [],
+    priceRange: [0, 500],
+    colors: [],
+    inStock: false
+  })
+  const [searchQuery, setSearchQuery] = useState("")
   return (
     <div className="bg-gradient-to-br from-slate-50 to-blue-50/30">
       <div className="container mx-auto px-4 py-8 ">
         <div className="mb-8">
-          <div className="">
-            <h2>Our Products</h2>
-            <p>Discover amazing products crafted with care</p>
+          <div className="space-y-4 mb-6">
+            <h2 className="text-4xl font-bold">Our Products</h2>
+            <p className="text-lg text-gray-600">Discover amazing products crafted with care</p>
           </div>
 
-          <div className="">
-            <Search />
-            <Input placeholder="Search products" />
+          <div className="relative mb-8">
+            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5 z-10" />
+            <Input
+              placeholder="Search products..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="pl-12 h-14 !text-lg rounded-2xl border-0 bg-white/80 backdrop-blur-sm shadow-lg shadow-blue-100/50"
+            />
           </div>
         </div>
 
@@ -113,10 +128,16 @@ const Products = () => {
             <ProductFilters />
           </div>
 
-          <div className="grid grid-cols-3 gap-6">
+          <div className="">
+            <div className="flex items-center justify-between mb-6">
+              <span>Showing 6 of 6 products</span>
+              <ProductSort />
+            </div>
+            <div className="grid grid-cols-3 gap-6">
             {products.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
+          </div>
           </div>
         </div>
       </div>

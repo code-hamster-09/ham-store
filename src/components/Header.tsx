@@ -78,7 +78,7 @@ const Header = () => {
             <NavLink to={"/cart"}>
               <Button variant="ghost" size="icon" className="rounded-2xl relative">
                 <ShoppingCart className="w-5 h-5"/>
-                <Badge className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-red-500 text-white text-xs flex items-center justify-center"/>
+                <div className="absolute -top-3 -right-2 w-6 h-6 rounded-full bg-red-500 border-red-500 text-white text-xs flex items-center justify-center font-bold">1</div>
               </Button>
             </NavLink>
 
