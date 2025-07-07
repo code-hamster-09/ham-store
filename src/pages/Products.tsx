@@ -1,9 +1,10 @@
-import ProductSort from "@/components/ProductSort";
 import ProductCard from "@/components/ProductCard";
 import ProductFilters from "@/components/ProductFilters";
+import ProductSort from "@/components/ProductSort";
 import { Input } from "@/components/ui/input";
+import { setSearchQuery } from "@/store/slices/productsSlice";
 import { Search } from "lucide-react";
-import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 const products = [
   {
@@ -95,21 +96,77 @@ const products = [
 ];
 
 const Products = () => {
-  const [selectedFilters, setSelectedFilters] = useState({
-    categories: [],
-    brands: [],
-    priceRange: [0, 500],
-    colors: [],
-    inStock: false
-  })
-  const [searchQuery, setSearchQuery] = useState("")
+  const { searchQuery, selectedFilters, sortBy } = useSelector(
+    (state) => state.productsSlice
+  );
+  const dispatch = useDispatch();
+  const filteredProducts = () => {
+    return products
+      .filter((product) => {
+        // searchQuery filter
+        if (
+          searchQuery.length > 0 &&
+          !product.name
+            .toLocaleLowerCase()
+            .includes(searchQuery.toLocaleLowerCase())
+        ) {
+          return false;
+        }
+        // categories filter
+        if (
+          selectedFilters.categories.length > 0 &&
+          !selectedFilters.categories.includes(product.category)
+        ) {
+          return false;
+        }
+
+        // brands filter
+        if (
+          selectedFilters.brands.length > 0 &&
+          !selectedFilters.brands.includes(product.brand)
+        ) {
+          return false;
+        }
+
+        // price range filter
+        if (
+          selectedFilters.priceRange[0] > product.price ||
+          selectedFilters.priceRange[1] < product.price
+        ) {
+          return false;
+        }
+
+        // instock filter .
+        if (selectedFilters.inStock && !product.inStock) {
+          return false;
+        }
+        return true;
+      })
+      .sort((a, b) => {
+        switch (sortBy) {
+          case "newest":
+            return b.id - a.id;
+          case "price-low":
+            return a.price - b.price;
+          case "price-high":
+            return b.price - a.price;
+          case "rating":
+            return b.rating - a.rating;
+          case "featured":
+          default:
+            return b.featured - a.featured;
+        }
+      });
+  };
   return (
     <div className="bg-gradient-to-br from-slate-50 to-blue-50/30">
       <div className="container mx-auto px-4 py-8 ">
         <div className="mb-8">
           <div className="space-y-4 mb-6">
             <h2 className="text-4xl font-bold">Our Products</h2>
-            <p className="text-lg text-gray-600">Discover amazing products crafted with care</p>
+            <p className="text-lg text-gray-600">
+              Discover amazing products crafted with care
+            </p>
           </div>
 
           <div className="relative mb-8">
@@ -117,7 +174,7 @@ const Products = () => {
             <Input
               placeholder="Search products..."
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              onChange={(e) => dispatch(setSearchQuery(e.target.value))}
               className="pl-12 h-14 !text-lg rounded-2xl border-0 bg-white/80 backdrop-blur-sm shadow-lg shadow-blue-100/50"
             />
           </div>
@@ -134,10 +191,10 @@ const Products = () => {
               <ProductSort />
             </div>
             <div className="grid grid-cols-3 gap-6">
-            {products.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
+              {filteredProducts().map((product) => (
+                <ProductCard key={product.id} product={product} />
+              ))}
+            </div>
           </div>
         </div>
       </div>

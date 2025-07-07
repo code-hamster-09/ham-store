@@ -25,6 +25,7 @@ interface ProductCardProps {
 
 const ProductCard = ({ product }: ProductCardProps) => {
   const [isWishlisted, setIsWishListed] = useState(false);
+  const [selectedColor, setSelectedColor] = useState(product.colors[0]);
   const discount = 1;
   return (
     <div className="group cursor-pointer">
@@ -58,7 +59,7 @@ const ProductCard = ({ product }: ProductCardProps) => {
           {/* wishlist button */}
           <button
             onClick={() => setIsWishListed(!isWishlisted)}
-            className={`absolute top-4 right-4 p-2 rounded-full transition-all ${
+            className={`absolute top-4 right-4 p-2 rounded-xl transition-all ${
               isWishlisted
                 ? "bg-red-500 text-white"
                 : "bg-white text-gray-600 hover:text-red-500 backdrop-blur-sm"
@@ -122,7 +123,26 @@ const ProductCard = ({ product }: ProductCardProps) => {
                   Colors:
                 </span>
                 <div className="flex gap-1">
-                  <button>blue</button>
+                  {product.colors.slice(0, 3).map((color) => (
+                    <button
+                      key={color}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setSelectedColor(color);
+                      }}
+                      className={`w-6 h-6 rounded-full border-2 transition-all duration-100 ${
+                        selectedColor === color
+                          ? "border-blue-500 scale-110"
+                          : "border-gray-300 hover:border-gray-400"
+                      }`}
+                      style={{ backgroundColor: color }}
+                    ></button>
+                  ))}
+                  {product.colors.length > 3 && (
+                    <span className="text-gray-500 font-medium text-sm">
+                      +{product.colors.length - 3}
+                    </span>
+                  )}
                 </div>
               </div>
 
