@@ -26,7 +26,9 @@ interface ProductCardProps {
 const ProductCard = ({ product }: ProductCardProps) => {
   const [isWishlisted, setIsWishListed] = useState(false);
   const [selectedColor, setSelectedColor] = useState(product.colors[0]);
-  const discount = 1;
+  const discount = product.originalPrice
+    ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
+    : 0
   return (
     <div className="group cursor-pointer">
       <div className="bg-white rounded-3xl overflow-hidden shadow-lg shadow-blue-100/50 transition-all duration-300 hover:shadow-2xl hover:shadow-blue-200/50 hover:-translate-y-2">

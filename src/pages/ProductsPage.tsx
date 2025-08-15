@@ -95,7 +95,7 @@ const products = [
   },
 ];
 
-const Products = () => {
+const ProductsPage = () => {
   const { searchQuery, selectedFilters, sortBy } = useSelector(
     (state) => state.productsSlice
   );
@@ -187,7 +187,7 @@ const Products = () => {
 
           <div className="">
             <div className="flex items-center justify-between mb-6">
-              <span>Showing 6 of 6 products</span>
+              <span>Showing {filteredProducts().length} of {products.length} products</span>
               <ProductSort />
             </div>
             <div className="grid grid-cols-3 gap-6">
@@ -202,4 +202,4 @@ const Products = () => {
   );
 };
 
-export default Products;
+export default ProductsPage;
