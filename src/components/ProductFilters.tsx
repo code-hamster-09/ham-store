@@ -13,9 +13,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { Button } from "./ui/button";
 import { Separator } from "./ui/separator";
 import { Slider } from "./ui/slider";
+import { RootState } from "@/store/store";
 
 const ProductFilters = () => {
-  const { selectedFilters } = useSelector((state) => state.productsSlice);
+  const { selectedFilters } = useSelector((state: RootState) => state.productsSlice);
   const dispatch = useDispatch();
   const categories = ["Electronics", "Accessories", "Clothing"];
   const brands = [

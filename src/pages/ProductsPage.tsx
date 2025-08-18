@@ -3,6 +3,7 @@ import ProductFilters from "@/components/ProductFilters";
 import ProductSort from "@/components/ProductSort";
 import { Input } from "@/components/ui/input";
 import { setSearchQuery } from "@/store/slices/productsSlice";
+import { RootState } from "@/store/store";
 import { Search } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -97,7 +98,7 @@ const products = [
 
 const ProductsPage = () => {
   const { searchQuery, selectedFilters, sortBy } = useSelector(
-    (state) => state.productsSlice
+    (state: RootState) => state.productsSlice
   );
   const dispatch = useDispatch();
   const filteredProducts = () => {
@@ -154,7 +155,7 @@ const ProductsPage = () => {
             return b.rating - a.rating;
           case "featured":
           default:
-            return b.featured - a.featured;
+            return Number(b.featured) - Number(a.featured);
         }
       });
   };

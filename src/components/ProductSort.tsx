@@ -6,10 +6,11 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { setSort } from "@/store/slices/productsSlice";
+import { RootState } from "@/store/store";
 import { useDispatch, useSelector } from "react-redux";
 
 const ProductSort = () => {
-  const { sortBy } = useSelector((state) => state.productsSlice)
+  const { sortBy } = useSelector((state: RootState) => state.productsSlice)
   const dispatch = useDispatch()
   return (
     <Select value={sortBy} onValueChange={(value) => dispatch(setSort(value))}>
