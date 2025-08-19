@@ -1,69 +1,70 @@
 # React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+🐹 HamStore
 
-Currently, two official plugins are available:
+HamStore — это современный e-commerce проект, разработанный с нуля для демонстрации навыков фронтенд-разработки.
+Цель — создать удобный, быстрый и адаптивный интернет-магазин, который можно масштабировать под реальных пользователей.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+🚀 Деплой на Vercel
 
-## Expanding the ESLint configuration
+✨ Возможности
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+🔎 Поиск и фильтрация товаров.
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+📱 Адаптивный дизайн для всех устройств.
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+🛒 Каталог с сортировкой и категориями.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+❤️ В будущем — избранное, корзина и личный кабинет.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+⚙️ Архитектура с Redux Toolkit для масштабируемости.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+🛠️ Технологии
+Технология	Использование
+⚛️ React + TypeScript	Компонентный подход + строгая типизация
+🎨 Tailwind CSS	Удобная стилизация и адаптивность
+🗂️ Redux Toolkit (RTK)	Слайсы, асинхронные запросы, глобальное состояние
+🌐 Axios	Работа с API
+🛤️ React Router	Навигация между страницами
+▲ Vercel	Хостинг и деплой
+Главная
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Каталог
+
+📂 Структура проекта
+hamstore/
+ ┣ 📂 src/
+ ┃ ┣ 📂 components/   # UI-компоненты
+ ┃ ┣ 📂 pages/        # Страницы (Home, Catalog, About, Contact)
+ ┃ ┣ 📂 store/        # Redux Toolkit store и слайсы
+ ┃ ┣ 📂 api/          # Работа с API (Axios)
+ ┃ ┣ 📂 styles/       # Tailwind + SCSS modules
+ ┃ ┣ App.tsx
+ ┃ ┗ main.tsx
+ ┣ package.json
+ ┗ vite.config.ts
+
+🚧 Планы развития
+
+✅ Поиск и фильтрация товаров.
+
+⏳ Лайки (Favorites).
+
+⏳ Корзина (Cart).
+
+⏳ Авторизация + профиль пользователя.
+
+⏳ Admin-панель для управления товарами.
+
+⚡ Запуск локально
+git clone <repo-url>
+cd hamstore
+npm install
+npm run dev
+
+📌 Автор
+
+👨‍💻 Разработчик: homyak
+📧 Контакты: sagimaks19@gmail.com
+
+ДЕМО ВЕРСИЯ: https://ham-store.vercel.app/
